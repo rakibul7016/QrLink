@@ -9,22 +9,44 @@
 <body>
     <div>
 
-        <form action="" method="Get">
-            <input type="text" name="code">
+        <form action="{{ url('/make') }}" method="post">
+            @csrf
+            <input type="text" name="orginal_url">
             <input type="submit" value="generate" name="sent">
         </form><br><br><br>
-<?php
-if (isset($_GET["sent"])) {
-    $codes = $_GET["code"];
+        @if (session('success_message'))
+        {{ $demo = session('success_message') }}
+        {!! QrCode::size('300')->generate($demo) !!}
+        @endif
 
-};
 
-    ?>
 
-{!! QrCode::size('300')->generate($codes) !!}
+
 
 
 
     </div>
+    <br>
+    {{-- Ai genaretor --}}
+    <div >
+
+        <h1>Generate title by AI</h1>
+        <form action="{{ route('result') }}" method="POST">
+            @csrf
+            <label for=""> Input Your Keyword</label>
+            <input type="text" name="topic" placeholder="input keyword">
+            <button type="submite">Genarete</button>
+        </form>
+
+    </div>
+    <div>
+        @if (isset($result))
+        <h3>Outoput:</h3>
+        <div style="white-space: pre-line;">{{ $result }}</div>
+            
+        @endif
+
+
+    </div>
 </body>
-</html>ml
+</html>

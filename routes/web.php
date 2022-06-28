@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UrlsortController;
+use App\Http\Controllers\AIController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,8 @@ Route::get('/', function () {
 Route::get('qr-code-genaretor', function () {
     return view('qr-code');
 });
+Route::post('/make',[UrlsortController::class,'make']);
+Route::get('/{code}',[UrlsortController::class,'show'])->name('short.show');
+
+// AI generetor Route
+Route::post('/ai',[AIController::class,'result'])->name('result');
