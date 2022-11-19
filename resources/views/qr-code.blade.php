@@ -7,6 +7,14 @@
     <title>QrLink</title>
 </head>
 <body>
+    {{-- Navigation bar  --}}
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Navbar</a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
     <div>
 
         <form action="{{ url('/make') }}" method="post">
@@ -43,7 +51,7 @@
         @if (isset($result))
         <h3>Outoput:</h3>
         <div style="white-space: pre-line;">{{ $result }}</div>
-            
+
         @endif
 
 
